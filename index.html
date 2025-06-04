@@ -21,12 +21,23 @@
         let lista = document.getElementById("lista");
         let item = document.createElement("li");
         item.innerHTML =
-          "<span class='remover'>" +
+          "<span class='texto'>" +
           campo.value +
           "</span> <span class='remover'>Remover</span> <span class='edit'>Editar</span>";
         lista.appendChild(item);
         campo.value = "";
         console.log("foi");
+      });
+      let lista = document.querySelector("#lista");
+      lista.addEventListener("click", function (evt) {
+        let elemento = evt.target;
+        if (elemento.className == "remover") {
+          console.log("SEXOOOOOO");
+          elemento.parentElement.remove();
+        } else if (elemento.className == "edit") {
+          elemento.parentElement.querySelector(".texto").contentEditable = true;
+          elemento.parentElement.querySelector(".texto").focus();
+        }
       });
     </script>
   </body>
