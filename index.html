@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ATV- ToDoList</title>
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <section>
-      <h2>Lista de tarefas</h2>
-      <ul id="lista"></ul>
-      <form action="#"><input type="text" /><button>Add</button></form>
+      <div class="container">
+        <h2>To Do List</h2>
+        <div class="lista">
+          <form action="#">
+            <input placeholder="Add new task" type="text" /><button>Add</button>
+          </form>
+          <ul id="lista"></ul>
+        </div>
+      </div>
     </section>
     <script>
       let btn = document.querySelector("button");
@@ -21,9 +27,9 @@
         let lista = document.getElementById("lista");
         let item = document.createElement("li");
         item.innerHTML =
-          "<span class='texto'>" +
+          "<div class='esq'><input type='checkbox' id='checkitem' name='checkitem' /><span class='texto'>" +
           campo.value +
-          "</span> <span class='remover'>Remover</span> <span class='edit'>Editar</span>";
+          "</span></div> <div class='dir'><span class='remover'>Remover</span> <span class='edit'>Editar</span></div>";
         lista.appendChild(item);
         campo.value = "";
         console.log("foi");
@@ -33,10 +39,12 @@
         let elemento = evt.target;
         if (elemento.className == "remover") {
           console.log("SEXOOOOOO");
-          elemento.parentElement.remove();
+          elemento.parentElement.parentElement.remove();
         } else if (elemento.className == "edit") {
-          elemento.parentElement.querySelector(".texto").contentEditable = true;
-          elemento.parentElement.querySelector(".texto").focus();
+          elemento.parentElement.parentElement.querySelector(
+            ".texto"
+          ).contentEditable = true;
+          elemento.parentElement.parentElement.querySelector(".texto").focus();
         }
       });
     </script>
